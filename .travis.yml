@@ -20,6 +20,10 @@ install:
   - travis_retry composer install --prefer-dist --no-interaction --no-progress --optimize-autoloader
   - mkdir -p build/logs
 
+before_script:
+  - mkdir -p tests/log
+  - sudo chmod a+rwX tests/log
+
 after_script:
   - |
     if [ $TRAVIS_PHP_VERSION = '7.1' ]; then
