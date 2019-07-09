@@ -82,7 +82,7 @@ class EmailReplyTest extends TestCase
         ]);
 
         $logFile = __DIR__ . '/log/reply.log';
-        unlink($logFile);
+        @unlink($logFile);
 
         $emailReply->read([$message]);
 
