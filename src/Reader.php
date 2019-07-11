@@ -1,4 +1,9 @@
 <?php
+/**
+ * @link https://github.com/tigrov/email-reply
+ * @author Sergei Tigrov <rrr-r@ya.ru>
+ */
+
 namespace tigrov\emailReply;
 
 use Ddeboer\Imap\Exception\MailboxDoesNotExistException;
@@ -6,6 +11,7 @@ use Ddeboer\Imap\Exception\MailboxDoesNotExistException;
 class Reader
 {
     /**
+     * Generates iterator for messages of mailboxes
      * @param \Ddeboer\Imap\MailboxInterface[] $mailboxes
      * @return \Ddeboer\Imap\MessageInterface[]
      */
@@ -19,6 +25,7 @@ class Reader
     }
 
     /**
+     * Returns mailbox models
      * @param \Ddeboer\Imap\ConnectionInterface $connection
      * @param string[] $mailboxes
      * @return \Ddeboer\Imap\MailboxInterface[]

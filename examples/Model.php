@@ -1,4 +1,8 @@
 <?php
+/**
+ * @link https://github.com/tigrov/email-reply
+ * @author Sergei Tigrov <rrr-r@ya.ru>
+ */
 
 use EmailReplyParser\EmailReplyParser;
 use tigrov\emailReply\ModelInterface;

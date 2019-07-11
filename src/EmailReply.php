@@ -1,4 +1,8 @@
 <?php
+/**
+ * @link https://github.com/tigrov/email-reply
+ * @author Sergei Tigrov <rrr-r@ya.ru>
+ */
 
 namespace tigrov\emailReply;
 
@@ -31,11 +35,20 @@ class EmailReply
      */
     public $decodeCallback;
 
+    /**
+     * EmailReply constructor.
+     * @param array $config
+     * @throws \ReflectionException
+     */
     public function __construct($config = [])
     {
         $this->configure($config);
     }
 
+    /**
+     * @param $config
+     * @throws \ReflectionException
+     */
     public function configure($config)
     {
         if (isset($config['classesMap'])) {
@@ -48,6 +61,11 @@ class EmailReply
         }
     }
 
+    /**
+     * @param $classes
+     * @return array
+     * @throws \ReflectionException
+     */
     private function normalizeClassesMap($classes)
     {
         $map = [];
@@ -63,8 +81,9 @@ class EmailReply
     }
 
     /**
-     * @param ModelInterface $model
-     * @param string|null $host
+     * Returns email address for a model
+     * @param ModelInterface $model the model
+     * @param string|null $host the host for the email address
      * @return string
      */
     public function getReplyEmail($model, $host = null)
@@ -94,8 +113,9 @@ class EmailReply
     }
 
     /**
-     * @param \Ddeboer\Imap\MessageInterface[] $messages
-     * @param bool $delete indicator to delete processed mail messages
+     * Reads and processes email messages
+     * @param \Ddeboer\Imap\MessageInterface[] $messages email messages
+     * @param bool $delete indicator to delete processed email messages
      */
     public function read($messages, $delete = true)
     {
@@ -117,8 +137,9 @@ class EmailReply
     }
 
     /**
-     * @param \Ddeboer\Imap\Message\EmailAddress[] $emails
-     * @param string $content
+     * Returns a model corresponding to a reply email
+     * @param \Ddeboer\Imap\Message\EmailAddress[] $emails emails to find the reply email of model
+     * @param string $content reply content to find the reply email of model
      * @return ModelInterface|null
      */
     public function getModel($emails, $content = '')
@@ -129,7 +150,8 @@ class EmailReply
     }
 
     /**
-     * @param \Ddeboer\Imap\Message\EmailAddress[] $emails
+     * Returns an email address matched to regex from emails
+     * @param \Ddeboer\Imap\Message\EmailAddress[] $emails emails to compare
      * @param string $regex
      * @return ModelInterface|null
      */
@@ -153,6 +175,7 @@ class EmailReply
     }
 
     /**
+     * Returns an email address matched to regex from content
      * @param string $content
      * @param string $regex
      * @return ModelInterface|null
@@ -180,6 +203,11 @@ class EmailReply
         return null;
     }
 
+    /**
+     * Returns a model matched to regex result
+     * @param $matches
+     * @return ModelInterface|null
+     */
     private function matchModel($matches)
     {
         $name = strtolower($matches[1]);
@@ -191,6 +219,10 @@ class EmailReply
         return $className::buildFromParams($params);
     }
 
+    /**
+     * Returns regex to find reply email for model
+     * @return string
+     */
     public function getEmailRegex()
     {
         $names = array_keys($this->classesMap);

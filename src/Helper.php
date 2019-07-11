@@ -1,9 +1,18 @@
 <?php
+/**
+ * @link https://github.com/tigrov/email-reply
+ * @author Sergei Tigrov <rrr-r@ya.ru>
+ */
 
 namespace tigrov\emailReply;
 
 class Helper
 {
+    /**
+     * Find all email addresses in content
+     * @param $content
+     * @return array
+     */
     public static function findEmails($content)
     {
         $list = [];
@@ -15,7 +24,7 @@ class Helper
     }
 
     /**
-     * Try to detect if mail message is auto response
+     * Try to detect if email message is auto response
      * @see https://github.com/jpmckinney/multi_mail/wiki/Detecting-autoresponders
      * @see https://github.com/Exim/exim/wiki/EximAutoReply
      * @param \Ddeboer\Imap\MessageInterface $message

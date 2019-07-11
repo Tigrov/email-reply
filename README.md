@@ -58,7 +58,13 @@ Then you can take steps:
     ```php
     $config = [
         'classesMap' => [
+            // key will be used as prefix for email address
             'model' => \Model::class,
+            // email for reply will be like model5@domain.com
+            // or
+            // 'm' => \Model::class,
+            // email for reply will be like m5@domain.com
+            // where 5 is id of a model
         ],
     ];
  
