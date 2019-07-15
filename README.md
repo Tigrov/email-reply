@@ -1,4 +1,4 @@
-Email reply
+Email Reply
 ===========
 
 The library passes reply messages from email to predefined objects. It uses IMAP to connect email servers.
@@ -116,7 +116,9 @@ Then you can take steps:
         }
     ```
 
-See [examples](https://github.com/tigrov/email-repl/examples) directory for examples.
+See [examples](https://github.com/tigrov/email-reply/examples) directory for examples.
+
+Also see [EmailReply for Yii2](https://github.com/tigrov/yii2-email-reply).
 
 Suggests
 --------
