@@ -32,9 +32,10 @@ class Helper
      */
     public static function isAutoresponse($message)
     {
-        if (!$message->getReturnPath()) {
-            return true;
-        }
+        // Current imap functions imap_headerinfo and imap_rfc822_parse_headers do not catch Return-Path header.
+        // if (!$message->getReturnPath()) {
+        //    return true;
+        // }
 
         $headers = $message->getHeaders();
         if ($test = $headers->get('auto_submitted')) {
