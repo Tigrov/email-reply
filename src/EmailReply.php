@@ -101,7 +101,12 @@ class EmailReply
             $host = reset($this->allowedHosts)
                 ?: $_SERVER['HTTP_X_FORWARDED_HOST']
                 ?? $_SERVER['HTTP_HOST']
-                ?? $_SERVER['SERVER_NAME'];
+                ?? $_SERVER['SERVER_NAME']
+                ?? null;
+
+            if ($host === null) {
+                throw new \Exception('Host must be specified. You can add it in config to EmailReply::$allowedHosts');
+            }
         }
 
         $mailbox = $name . $this->separator . $values;
